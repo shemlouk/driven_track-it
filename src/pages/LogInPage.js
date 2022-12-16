@@ -6,7 +6,7 @@ import FormContainer from "../layout/FormContainer";
 import Input from "../components/form/Input";
 import Submit from "../components/form/Submit";
 
-export default function LogInPage() {
+export default function LogInPage({ setLoginData }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [toggle, setToggle] = useState(false);
@@ -17,7 +17,13 @@ export default function LogInPage() {
     setToggle(true);
     axios
       .post(apiURL.login, { email, password })
-      .then(() => {
+      .then((res) => {
+        setLoginData({
+          ...res.data,
+          config: {
+            headers: { Authorization: `Bearer ${res.data.token}` },
+          },
+        });
         navigate("/hoje");
       })
       .catch(() => {

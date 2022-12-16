@@ -1,3 +1,5 @@
+import Container from "../layout/Container";
+
 export default function RecordPage() {
-  return <></>;
+  return <Container>Record</Container>;
 }
