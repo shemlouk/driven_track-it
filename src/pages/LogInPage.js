@@ -1,10 +1,10 @@
+import { apiURL } from "../data/constants";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 import FormContainer from "../layout/FormContainer";
 import Input from "../components/form/Input";
 import Submit from "../components/form/Submit";
-import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
-import axios from "axios";
-import { apiURL } from "../data/constants";
 
 export default function LogInPage() {
   const [email, setEmail] = useState("");
@@ -18,7 +18,7 @@ export default function LogInPage() {
     axios
       .post(apiURL.login, { email, password })
       .then(() => {
-        navigate("./habitos");
+        navigate("/hoje");
       })
       .catch(() => {
         alert("Não foi possível fazer login!");
@@ -31,6 +31,7 @@ export default function LogInPage() {
       <form onSubmit={(e) => submit(e)}>
         <Input
           onChange={(e) => setEmail(e.target.value)}
+          value={email}
           type="email"
           placeholder="email"
           required
@@ -38,6 +39,7 @@ export default function LogInPage() {
         />
         <Input
           onChange={(e) => setPassword(e.target.value)}
+          value={password}
           type="password"
           placeholder="senha"
           required
