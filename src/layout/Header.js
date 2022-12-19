@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export default function Header() {
-  const profilePicture = useContext(LoginContext).image;
+  const context = useContext(LoginContext);
+  const profilePicture = context && context.image;
 
   return (
     <StyledHeader>

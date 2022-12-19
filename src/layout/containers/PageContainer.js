@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import Header from "./Header";
-import Menu from "./Menu";
-import LoadingPage from "../components/animations/LoadingPage";
+import Header from "../Header";
+import Menu from "../Menu";
+import LoadingPage from "../../components/loaders/PageLoader";
 
-export default function Container({ children, isDataLoaded }) {
+export default function PageContainer({ children, isDataLoaded }) {
   return (
     <>
       <Header />
@@ -22,6 +22,11 @@ const Main = styled.main`
   flex-direction: column;
   align-items: center;
   color: var(--theme-gray);
+
+  ul,
+  p {
+    width: 100%;
+  }
 
   p {
     line-height: 23px;

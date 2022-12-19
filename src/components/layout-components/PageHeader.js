@@ -1,18 +1,18 @@
 import styled from "styled-components";
 
-export default function PageTitle({ children, title, subtitle, changeColor }) {
+export default function PageHeader({ children, title, subtitle, changeColor }) {
   return (
-    <StyledDiv toggle={changeColor}>
+    <Div toggle={changeColor}>
       <div>
         <h1>{title}</h1>
         {children}
       </div>
       {subtitle}
-    </StyledDiv>
+    </Div>
   );
 }
 
-const StyledDiv = styled.div`
+const Div = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;

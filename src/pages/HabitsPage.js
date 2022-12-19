@@ -1,29 +1,63 @@
-import PageTitle from "../components/main/PageTitle";
-import Container from "../layout/Container";
-import Submit from "../components/form/Submit";
 import { useContext, useEffect, useState } from "react";
-import { LoginContext } from "../hooks/LoginContext";
-import axios from "axios";
 import { apiURL, messages } from "../data/constants";
+import { LoginContext } from "../hooks/LoginContext";
+import { useNavigate } from "react-router-dom";
+import PageContainer from "../layout/containers/PageContainer";
+import CreateButton from "../components/form/CreateButton";
+import PageHeader from "../components/layout-components/PageHeader";
+import HabitCard from "../components/cards/HabitCard";
+import FormCard from "../components/cards/FormCard";
+import axios from "axios";
 
 export default function HabitPage() {
   const [data, setData] = useState(null);
-  const config = useContext(LoginContext).config;
+  const [forms, setForms] = useState([]);
+  const [update, setUpdate] = useState(0);
+  const navigate = useNavigate();
+  const context = useContext(LoginContext);
 
   useEffect(() => {
+    if (context === null) {
+      navigate("/");
+      return;
+    }
     axios
-      .get(apiURL.habit(""), config)
+      .get(apiURL.habit(""), context.config)
       .then((res) => setData(res.data))
       .catch(() => alert("Não foi possível carregar os dados!"));
-  }, []);
+  }, [update]);
+
+  function updatePage() {
+    setUpdate(update + 1);
+  }
 
   return (
-    <Container isDataLoaded={data !== null}>
-      <PageTitle title="Meus hábitos">
-        <Submit adjust>+</Submit>
-      </PageTitle>
-
-      <p>{!data && messages.habits.default}</p>
-    </Container>
+    <PageContainer isDataLoaded={data !== null}>
+      <PageHeader title="Meus hábitos">
+        <CreateButton
+          createFunction={() => {
+            if (forms.length > 0) return;
+            setForms([
+              <FormCard
+                key={forms.length}
+                deleteCard={() => setForms([])}
+                update={updatePage}
+              />,
+            ]);
+          }}
+        />
+      </PageHeader>
+      {data !== null && (
+        <>
+          <ul>
+            {forms}
+            {data.map((d) => (
+              <HabitCard key={d.id} {...d} update={updatePage} />
+            ))}
+          </ul>
+          <p>{data.length === 0 && messages.habits.default}</p>
+        </>
+      )}
+    </PageContainer>
   );
 }

@@ -1,13 +1,26 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
-import Container from "../layout/Container";
-import PageTitle from "../components/main/PageTitle";
+import PageContainer from "../layout/containers/PageContainer";
+import PageHeader from "../components/layout-components/PageHeader";
 import { apiURL, messages, weekdays } from "../data/constants";
 import { LoginContext } from "../hooks/LoginContext";
+import { useNavigate } from "react-router-dom";
 
 export default function TodayPage() {
   const [data, setData] = useState(null);
-  const config = useContext(LoginContext).config;
+  const navigate = useNavigate();
+  const context = useContext(LoginContext);
+
+  useEffect(() => {
+    if (context === null) {
+      navigate("/");
+      return;
+    }
+    axios
+      .get(apiURL.today, context.config)
+      .then((res) => setData(res.data))
+      .catch(() => alert("Não foi possível carregar os dados!"));
+  }, []);
 
   function getDate() {
     const today = new Date();
@@ -16,19 +29,12 @@ export default function TodayPage() {
       .substring(0, 5)}`;
   }
 
-  useEffect(() => {
-    axios
-      .get(apiURL.today, config)
-      .then((res) => setData(res.data))
-      .catch(() => alert("Não foi possível carregar os dados!"));
-  }, []);
-
   return (
-    <Container isDataLoaded={data !== null}>
-      <PageTitle
+    <PageContainer isDataLoaded={data !== null}>
+      <PageHeader
         title={getDate()}
         subtitle={messages.today.default}
-      ></PageTitle>
-    </Container>
+      ></PageHeader>
+    </PageContainer>
   );
 }

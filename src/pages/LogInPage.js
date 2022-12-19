@@ -2,7 +2,7 @@ import { apiURL } from "../data/constants";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import FormContainer from "../layout/FormContainer";
+import FormContainer from "../layout/containers/FormContainer";
 import Input from "../components/form/Input";
 import Submit from "../components/form/Submit";
 

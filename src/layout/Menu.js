@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import ProgressBar from "../components/animations/ProgressBar";
+import ProgressBar from "../components/layout-components/ProgressBar";
 
 export default function Menu() {
   return (
