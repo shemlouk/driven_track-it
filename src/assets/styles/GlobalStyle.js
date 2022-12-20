@@ -56,6 +56,7 @@ const GlobalStyle = createGlobalStyle`
 		--theme-blue-dark: #126BA5;
 		--theme-green: #8FC549;
 		--theme-gray: #666666;
+		--theme-red: #ea5766;
 	}
 	* {
 		font-family: 'Lexend Deca', sans-serif !important;
