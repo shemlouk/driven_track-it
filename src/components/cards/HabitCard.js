@@ -23,11 +23,16 @@ export default function HabitCard({ id, name, days, update }) {
   }
 
   return (
-    <CardContainer>
+    <CardContainer data-test="habit-container">
       {animation && <CardLoader />}
-      <p>{name}</p>
+      <p data-test="habit-name">{name}</p>
       {Object.keys(weekdays).map((k) => (
-        <WeekdayButton key={k} disabled selected={days.includes(Number(k))}>
+        <WeekdayButton
+          data-test="habit-day"
+          key={k}
+          disabled
+          selected={days.includes(Number(k))}
+        >
           {weekdays[k].charAt(0)}
         </WeekdayButton>
       ))}

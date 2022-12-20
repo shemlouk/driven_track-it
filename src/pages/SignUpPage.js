@@ -32,6 +32,7 @@ export default function SignUpPage() {
     <FormContainer>
       <form onSubmit={(e) => submit(e)}>
         <Input
+          data-test="email-input"
           onChange={(e) => setEmail(e.target.value)}
           value={email}
           type="email"
@@ -40,6 +41,7 @@ export default function SignUpPage() {
           disabled={toggle}
         />
         <Input
+          data-test="password-input"
           onChange={(e) => setPassword(e.target.value)}
           value={password}
           type="password"
@@ -48,6 +50,7 @@ export default function SignUpPage() {
           disabled={toggle}
         />
         <Input
+          data-test="user-name-input"
           onChange={(e) => setName(e.target.value)}
           value={name}
           type="text"
@@ -57,15 +60,20 @@ export default function SignUpPage() {
           pattern="[a-zA-Z\s]+"
         />
         <Input
+          data-test="user-image-input"
           onChange={(e) => setImage(e.target.value)}
           value={image}
           type="url"
           placeholder="foto"
           disabled={toggle}
         />
-        <Submit disabled={toggle}>Cadastrar</Submit>
+        <Submit dataTest="signup-btn" disabled={toggle}>
+          Cadastrar
+        </Submit>
       </form>
-      <Link to="/">Já tem uma conta? Faça login!</Link>
+      <Link data-test="login-link" to="/">
+        Já tem uma conta? Faça login!
+      </Link>
     </FormContainer>
   );
 }

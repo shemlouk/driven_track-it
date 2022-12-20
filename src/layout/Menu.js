@@ -7,12 +7,16 @@ import { ProgressContext } from "../hooks/contexts";
 export default function Menu() {
   const progress = useContext(ProgressContext);
   return (
-    <StyledFooter>
-      <Link to="/habitos">Hábitos</Link>
-      <Link to="/hoje">
+    <StyledFooter data-test="menu">
+      <Link data-test="habit-link" to="/habitos">
+        Hábitos
+      </Link>
+      <Link data-test="today-link" to="/hoje">
         <ProgressBar name="Hoje" percentage={progress} />
       </Link>
-      <Link to="/historico">Histórico</Link>
+      <Link data-test="history-link" to="/historico">
+        Histórico
+      </Link>
     </StyledFooter>
   );
 }

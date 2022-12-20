@@ -36,6 +36,7 @@ export default function LogInPage({ setLoginData }) {
     <FormContainer>
       <form onSubmit={(e) => submit(e)}>
         <Input
+          data-test="email-input"
           onChange={(e) => setEmail(e.target.value)}
           value={email}
           type="email"
@@ -44,6 +45,7 @@ export default function LogInPage({ setLoginData }) {
           disabled={toggle}
         />
         <Input
+          data-test="password-input"
           onChange={(e) => setPassword(e.target.value)}
           value={password}
           type="password"
@@ -51,9 +53,13 @@ export default function LogInPage({ setLoginData }) {
           required
           disabled={toggle}
         />
-        <Submit disabled={toggle}>Entrar</Submit>
+        <Submit dataTest="login-btn" disabled={toggle}>
+          Entrar
+        </Submit>
       </form>
-      <Link to="/cadastro">Não tem uma conta? Cadastre-se!</Link>
+      <Link data-test="signup-link" to="/cadastro">
+        Não tem uma conta? Cadastre-se!
+      </Link>
     </FormContainer>
   );
 }

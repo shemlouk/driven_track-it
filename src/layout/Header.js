@@ -8,7 +8,7 @@ export default function Header() {
   const profilePicture = context && context.image;
 
   return (
-    <StyledHeader>
+    <StyledHeader data-test="header">
       <Link to="/hoje">TrackIt</Link>
       <div>
         <img src={profilePicture} />

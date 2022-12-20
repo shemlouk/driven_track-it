@@ -1,13 +1,20 @@
 import styled from "styled-components";
 
-export default function PageHeader({ children, title, subtitle, changeColor }) {
+export default function PageHeader({
+  children,
+  title,
+  subtitle,
+  changeColor,
+  titleDataTest,
+  subtitleDataTest,
+}) {
   return (
     <Div toggle={changeColor}>
       <div>
-        <h1>{title}</h1>
+        <h1 data-test={titleDataTest}>{title}</h1>
         {children}
       </div>
-      {subtitle}
+      <p data-test={subtitleDataTest}>{subtitle}</p>
     </Div>
   );
 }

@@ -41,6 +41,7 @@ export default function TodayPage({ setProgress }) {
   }
 
   function getProgress(arr) {
+    if (arr.length === 0) return 0;
     const ratio = arr.filter((d) => d.done === true).length / arr.length;
     return (ratio * 100).toFixed(0);
   }
@@ -51,6 +52,8 @@ export default function TodayPage({ setProgress }) {
         <PageHeader
           changeColor={progress > 0}
           title={getDate()}
+          titleDataTest="today"
+          subtitleDataTest="today-counter"
           subtitle={
             progress == 0
               ? messages.today.default

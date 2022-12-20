@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import SubmitLoader from "../loaders/SubmitLoader";
 
-export default function Submit({ children, disabled, adjust }) {
+export default function Submit({ children, disabled, adjust, dataTest }) {
   return (
-    <Button {...{ adjust, disabled }}>
+    <Button data-test={dataTest} {...{ adjust, disabled }}>
       {disabled ? <SubmitLoader /> : children}
     </Button>
   );

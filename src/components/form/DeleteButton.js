@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export default function DeleteButton({ deleteFunction }) {
   return (
-    <Button onClick={deleteFunction}>
+    <Button data-test="habit-delete-btn" onClick={deleteFunction}>
       <ion-icon name="trash-outline"></ion-icon>
     </Button>
   );

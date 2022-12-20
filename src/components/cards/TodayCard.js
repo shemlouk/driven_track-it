@@ -30,14 +30,14 @@ export default function TodayCard({
   }
 
   return (
-    <CardContainer>
+    <CardContainer data-test="today-habit-container">
       {toggle && <CardLoader />}
-      <p>{name}</p>
+      <p data-test="today-habit-name">{name}</p>
       <Div>
-        <p>
+        <p data-test="today-habit-sequence">
           Sequência atual: <Span toggle={done}>{currentSequence} dias</Span>
         </p>
-        <p>
+        <p data-test="today-habit-record">
           Seu record:{" "}
           <Span toggle={currentSequence === highestSequence && done}>
             {highestSequence} dias

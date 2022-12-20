@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export default function CreateButton({ createFunction }) {
   return (
-    <Button onClick={createFunction}>
+    <Button data-test="habit-create-btn" onClick={createFunction}>
       <ion-icon name="add-outline"></ion-icon>
     </Button>
   );

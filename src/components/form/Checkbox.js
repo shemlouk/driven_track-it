@@ -4,7 +4,12 @@ import check from "../../assets/check.svg";
 export default function Checkbox({ checkFunction, status }) {
   return (
     <>
-      <Box type="checkbox" checked={status} onChange={checkFunction} />
+      <Box
+        data-test="today-habit-check-btn"
+        type="checkbox"
+        checked={status}
+        onChange={checkFunction}
+      />
       <Checkmark src={check} />
     </>
   );

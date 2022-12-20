@@ -39,9 +39,10 @@ export default function FormCard({ deleteCard, update }) {
   }
 
   return (
-    <CardContainer dissapear={toggle}>
+    <CardContainer data-test="habit-create-container" dissapear={toggle}>
       <form onSubmit={(e) => submit(e)}>
         <Input
+          data-test="habit-name-input"
           onChange={(e) => setName(e.target.value)}
           value={name}
           type="text"
@@ -52,6 +53,7 @@ export default function FormCard({ deleteCard, update }) {
           {Object.keys(weekdays).map((k) => (
             <li key={k}>
               <WeekdayButton
+                data-test="habit-day"
                 type="button"
                 selected={days.includes(Number(k))}
                 onClick={() => selectDay(Number(k))}
@@ -63,6 +65,7 @@ export default function FormCard({ deleteCard, update }) {
         </ul>
         <ButtonsContainer>
           <CancelButton
+            data-test="habit-create-cancel-btn"
             type="button"
             onClick={() => {
               setToggle(true);
@@ -71,7 +74,9 @@ export default function FormCard({ deleteCard, update }) {
           >
             Cancelar
           </CancelButton>
-          <Submit adjust>Salvar</Submit>
+          <Submit dataTest="habit-create-save-btn" adjust>
+            Salvar
+          </Submit>
         </ButtonsContainer>
       </form>
     </CardContainer>

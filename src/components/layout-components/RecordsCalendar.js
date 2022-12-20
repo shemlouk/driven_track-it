@@ -5,7 +5,7 @@ import styled from "styled-components";
 export default function RecordsCalendar(props) {
   return (
     <Div>
-      <Calendar locale="pt-BR" {...props} />
+      <Calendar data-test="calendar" locale="pt-BR" {...props} />
     </Div>
   );
 }
