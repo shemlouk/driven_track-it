@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { apiURL, weekdays } from "../../data/constants";
-import { LoginContext } from "../../hooks/LoginContext";
+import { LoginContext } from "../../hooks/contexts";
 import CardContainer from "../../layout/containers/CardContainer";
 import WeekdayButton from "../form/WeekdayButton";
 import CancelButton from "../form/CancelButton";
@@ -12,6 +12,7 @@ import axios from "axios";
 export default function FormCard({ deleteCard, update }) {
   const [name, setName] = useState("");
   const [days, setDays] = useState([]);
+  const [toggle, setToggle] = useState(false);
   const context = useContext(LoginContext);
 
   function submit(e) {
@@ -20,12 +21,11 @@ export default function FormCard({ deleteCard, update }) {
       alert("Selecione no mínimo um dia da semana!");
       return;
     }
+    setToggle(true);
+    setTimeout(() => deleteCard(), 280);
     axios
       .post(apiURL.habit(""), { name, days }, context.config)
-      .then(() => {
-        update();
-        deleteCard();
-      })
+      .then(() => update())
       .catch(() => alert("Não foi possível enviar os dados!"));
   }
 
@@ -39,7 +39,7 @@ export default function FormCard({ deleteCard, update }) {
   }
 
   return (
-    <CardContainer>
+    <CardContainer dissapear={toggle}>
       <form onSubmit={(e) => submit(e)}>
         <Input
           onChange={(e) => setName(e.target.value)}
@@ -62,7 +62,13 @@ export default function FormCard({ deleteCard, update }) {
           ))}
         </ul>
         <ButtonsContainer>
-          <CancelButton type="button" onClick={deleteCard}>
+          <CancelButton
+            type="button"
+            onClick={() => {
+              setToggle(true);
+              setTimeout(() => deleteCard(), 280);
+            }}
+          >
             Cancelar
           </CancelButton>
           <Submit adjust>Salvar</Submit>

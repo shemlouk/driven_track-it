@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { apiURL, weekdays } from "../../data/constants";
-import { LoginContext } from "../../hooks/LoginContext";
+import { LoginContext } from "../../hooks/contexts";
 import CardContainer from "../../layout/containers/CardContainer";
 import WeekdayButton from "../form/WeekdayButton";
 import DeleteButton from "../form/DeleteButton";
@@ -31,7 +31,13 @@ export default function HabitCard({ id, name, days, update }) {
           {weekdays[k].charAt(0)}
         </WeekdayButton>
       ))}
-      <DeleteButton deleteFunction={deleteHabit} />
+      <DeleteButton
+        deleteFunction={() => {
+          if (!window.confirm("Tem certeza que deseja deletar esse hábito?"))
+            return;
+          deleteHabit();
+        }}
+      />
     </CardContainer>
   );
 }

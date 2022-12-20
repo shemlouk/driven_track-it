@@ -1,7 +1,7 @@
 import { InfinitySpin } from "react-loader-spinner";
 import styled from "styled-components";
 
-export default function PageLoader() {
+export default function CardLoader() {
   return (
     <Div>
       <InfinitySpin width="200" color="var(--theme-blue-light)" />

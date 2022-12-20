@@ -1,13 +1,16 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import ProgressBar from "../components/layout-components/ProgressBar";
+import { ProgressContext } from "../hooks/contexts";
 
 export default function Menu() {
+  const progress = useContext(ProgressContext);
   return (
     <StyledFooter>
       <Link to="/habitos">Hábitos</Link>
       <Link to="/hoje">
-        <ProgressBar name="Hoje" percentage={66} />
+        <ProgressBar name="Hoje" percentage={progress} />
       </Link>
       <Link to="/historico">Histórico</Link>
     </StyledFooter>

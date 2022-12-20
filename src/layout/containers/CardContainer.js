@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const FormContainer = styled.li`
+const CardContainer = styled.li`
   width: 100%;
   min-height: 91px;
   padding: 15px;
@@ -9,12 +9,17 @@ const FormContainer = styled.li`
   transition: 0.3s;
   margin-bottom: 10px;
   position: relative;
-  animation: cardAppear 0.3s ease-out;
+  animation: ${({ dissapear }) => (dissapear ? "cardDissappear" : "cardAppear")}
+    0.3s ease-out;
 
   p {
     font-size: 20px;
     margin-bottom: 8px;
   }
+
+  ul {
+    display: flex;
+  }
 `;
 
-export default FormContainer;
+export default CardContainer;

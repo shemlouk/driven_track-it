@@ -45,6 +45,12 @@ const GlobalStyle = createGlobalStyle`
 		border-collapse: collapse;
 		border-spacing: 0;
 	}
+	input[type="checkbox"] {
+		-webkit-appearance: none;
+		appearance: none;
+		background-color: #ebebeb;
+		margin: 0;
+	}
 	:root {
 		--theme-blue-light: #52B6FF;
 		--theme-blue-dark: #126BA5;
